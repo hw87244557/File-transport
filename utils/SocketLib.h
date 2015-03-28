@@ -6,3 +6,5 @@
 #include<string.h> 
 
 int create_server_socket(int ServerPort);
+
+int create_client_socket(int ServerPort);
