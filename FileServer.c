@@ -4,42 +4,14 @@
 #include<stdio.h>  
 #include<stdlib.h>  
 #include<string.h>  
-  
+#include"utils/SocketLib.h"
 #define SERVER_PORT    6666  
-#define LENGTH_OF_LISTEN_QUEUE     20  
 #define BUFFER_SIZE                1024  
 #define FILE_NAME_MAX_SIZE         512  
   
 int main(int argc, char **argv)  
 {  
-    // set server socket's address information    
-    struct sockaddr_in   server_addr;  
-    bzero(&server_addr, sizeof(server_addr));  
-    server_addr.sin_family = AF_INET;  
-    server_addr.sin_addr.s_addr = htons(INADDR_ANY);  
-    server_addr.sin_port = htons(SERVER_PORT);  
-  
-    // create a stream socket    
-    int server_socket = socket(PF_INET, SOCK_STREAM, 0);  
-    if (server_socket < 0)  
-    {  
-        printf("Create Socket Failed!\n");  
-        exit(1);  
-    }  
-  
-    // bind the socket with the server's address
-    if (bind(server_socket, (struct sockaddr*)&server_addr, sizeof(server_addr)))  
-    {  
-        printf("Server Bind Port: %d Failed!\n", SERVER_PORT);  
-        exit(1);  
-    }  
-  
-    // listen the socket
-    if (listen(server_socket, LENGTH_OF_LISTEN_QUEUE))  
-    {  
-        printf("Server Listen Failed!\n");  
-        exit(1);  
-    }  
+    int server_socket = create_server_socket(SERVER_PORT);
   
      while(1)  
     {  

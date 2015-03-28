@@ -49,7 +49,6 @@ int main(int argc, char **argv)
     server_addr.sin_port = htons(HELLO_WORLD_SERVER_PORT);  
     socklen_t server_addr_length = sizeof(server_addr);  
   
-    // 向服务器发起连接请求，连接成功后client_socket代表客户端和服务器端的一个socket连接  
     if (connect(client_socket, (struct sockaddr*)&server_addr, server_addr_length) < 0)  
     {  
         printf("Can Not Connect To %s!\n", argv[1]);  
