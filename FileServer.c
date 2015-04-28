@@ -15,7 +15,7 @@ int main(int argc, char **argv)
     while(1)  
     {  
         struct sockaddr_in client_addr;  
-        socklen_t          length = sizeof(client_addr);    
+        socklen_t length = sizeof(client_addr);    
 
         int new_server_socket = accept(server_socket, (struct sockaddr*)&client_addr, &length);  
         if (new_server_socket < 0)  {  
